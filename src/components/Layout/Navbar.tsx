@@ -44,7 +44,6 @@ const Navbar: React.FC = () => {
                   alt="Beanlab Logo"
                   width={24}
                   height={24}
-                  className="mr-2"
                 />
               </span>
               BeanLab.

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage: React.FC = () => {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
     if (items.length === 0) {
@@ -31,12 +33,12 @@ const CartPage: React.FC = () => {
               <ShoppingCart className="w-16 lg:w-24 h-16 lg:h-24 mx-auto text-primary-400 mb-6" />
               <h2 className="text-xl lg:text-2xl font-bold text-primary-900 mb-4">Keranjang Kosong</h2>
               <p className="text-primary-600 mb-8 text-sm lg:text-base">Belum ada item di keranjang Anda. Yuk mulai pilih kopi favorit!</p>
-              <a
-                href="/menu"
+              <button
+                onClick={() => navigate('/menu')}
                 className="bg-primary-700 hover:bg-primary-800 text-white px-6 lg:px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
               >
                 Lihat Menu
-              </a>
+              </button>
             </div>
           </div>
         </main>
