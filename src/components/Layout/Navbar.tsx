@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ShoppingCart } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import beanlabLogo from "../asset/logo-BeanLab-white.svg";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesToggled, setIsServicesToggled] = useState(false);
+  const [isBookingToggled, setIsBookingToggled] = useState(false);
   const location = useLocation();
   const { getTotalItems } = useCart();
 
@@ -15,20 +16,20 @@ const Navbar: React.FC = () => {
     { name: 'Keranjang', href: '/cart' }
   ];
 
-  const services = [
+  const Booking = [
     { name: 'Pilih Meja', href: '/reserve' },
     { name: 'Sesi Custom Kopi', href: '/custom-session' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
-  const isServiceActive = () => services.some(service => isActive(service.href));
+  const isServiceActive = () => Booking.some(service => isActive(service.href));
 
-  const handleServicesToggle = () => {
-    setIsServicesToggled(!isServicesToggled);
+  const handleBookingToggle = () => {
+    setIsBookingToggled(!isBookingToggled);
   };
 
   const handleServiceLinkClick = () => {
-    setIsServicesToggled(false);
+    setIsBookingToggled(false);
   };
 
   return (
@@ -36,8 +37,17 @@ const Navbar: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="text-white text-xl sm:text-2xl font-bold">
-              <span className="text-accent-300">☕</span> BeanLab.
+          <Link to="/" className="flex items-center text-white text-xl sm:text-2xl font-bold">
+              <span className="text-accent-300">
+                <img
+                  src={beanlabLogo}
+                  alt="Beanlab Logo"
+                  width={24}
+                  height={24}
+                  className="mr-2"
+                />
+              </span>
+              BeanLab.
             </Link>
             
             <div className="hidden md:block ml-6 lg:ml-10">
@@ -70,29 +80,29 @@ const Navbar: React.FC = () => {
                 
                 <div className="relative">
                   <button 
-                    onClick={handleServicesToggle}
-                    onMouseEnter={() => window.innerWidth >= 768 && setIsServicesToggled(true)}
-                    onMouseLeave={() => window.innerWidth >= 768 && setIsServicesToggled(false)}
+                    onClick={handleBookingToggle}
+                    onMouseEnter={() => window.innerWidth >= 768 && setIsBookingToggled(true)}
+                    onMouseLeave={() => window.innerWidth >= 768 && setIsBookingToggled(false)}
                     className={`px-3 py-2 rounded-md text-sm font-medium inline-flex items-center transition-all duration-200 ${
-                      isServiceActive() || isServicesToggled
+                      isServiceActive() || isBookingToggled
                         ? 'text-white bg-primary-700 shadow-lg'
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                     }`}
                   >
-                    Services
+                    Booking
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-                      isServicesToggled ? 'rotate-180' : ''
+                      isBookingToggled ? 'rotate-180' : ''
                     }`} />
                   </button>
                   
                   <div 
                     className={`absolute mt-1 bg-white text-gray-800 rounded-lg shadow-xl z-50 min-w-[200px] transition-all duration-200 ${
-                      isServicesToggled ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                      isBookingToggled ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                     }`}
-                    onMouseEnter={() => window.innerWidth >= 768 && setIsServicesToggled(true)}
-                    onMouseLeave={() => window.innerWidth >= 768 && setIsServicesToggled(false)}
+                    onMouseEnter={() => window.innerWidth >= 768 && setIsBookingToggled(true)}
+                    onMouseLeave={() => window.innerWidth >= 768 && setIsBookingToggled(false)}
                   >
-                    {services.map((service) => (
+                    {Booking.map((service) => (
                       <Link
                         key={service.name}
                         to={service.href}
@@ -115,7 +125,7 @@ const Navbar: React.FC = () => {
               to="/reserve"
               className="bg-primary-700 hover:bg-primary-800 text-white px-4 lg:px-6 py-2 rounded-lg font-semibold transition-colors text-sm lg:text-base"
             >
-              BOOK A TABLE
+              BOOK A SESSION
             </Link>
           </div>
           
@@ -162,7 +172,7 @@ const Navbar: React.FC = () => {
             </Link>
           ))}
           
-          {services.map((service) => (
+          {Booking.map((service) => (
             <Link
               key={service.name}
               to={service.href}
@@ -178,11 +188,11 @@ const Navbar: React.FC = () => {
           ))}
           
           <Link
-            to="/reserve"
+            to="/custom-session"
             className="block w-full mt-4 bg-primary-700 hover:bg-primary-800 text-white px-6 py-2 rounded-lg font-semibold text-center transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            BOOK A TABLE
+            BOOK A SESSION
           </Link>
         </div>
       </div>

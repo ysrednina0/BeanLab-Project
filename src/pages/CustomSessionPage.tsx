@@ -240,14 +240,6 @@ const CustomSessionPage: React.FC = () => {
               </div>
             </div>
             
-            <div className="mt-6 lg:mt-8 bg-accent-100 border border-accent-300 rounded-lg p-4">
-              <h4 className="font-semibold text-primary-900 mb-2">💰 Biaya Sesi Custom</h4>
-              <p className="text-primary-700 text-sm">
-                Biaya sesi custom kopi: <strong>Rp 150.000</strong> per orang (termasuk bahan dan panduan barista). 
-                Durasi: 1.5 jam. Pembayaran dapat dilakukan di tempat.
-              </p>
-            </div>
-            
             <div className="flex justify-end mt-6 lg:mt-8">
               <button
                 type="submit"

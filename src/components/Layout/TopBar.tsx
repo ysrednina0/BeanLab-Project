@@ -10,7 +10,7 @@ const TopBar: React.FC = () => {
           <span className="text-center sm:text-left">Mon - Fri: 9:00 - 19:00 / Closed on Weekends</span>
         </div>
         <div className="hidden md:flex items-center gap-4">
-          <span className="text-accent-300">Email: beanlab@coffee.id | Instagram: @beanlabcoffee</span>
+          <span className="text-accent-300">Email: beanlabofc@gmail.com | Instagram: @beanlab_official</span>
         </div>
       </div>
     </div>
